@@ -2,7 +2,7 @@
 
 ## 1. Focus on Early Customer Retention
 
-Since nearly **45–50% of new customers churn within the first year**, improving the early customer experience is critical.
+Since nearly **45 - 50% of new customers churn within the first year**, improving the early customer experience is critical.
 
 Actions:
 
@@ -14,7 +14,7 @@ Actions:
 
 ## 2. Encourage Long-Term Contracts
 
-Customers on long-term contracts have churn rates as low as **10–15%**, compared to **40%+ for month-to-month users**.
+Customers on long-term contracts have churn rates as low as **10 - 15%**, compared to **40%+ for month-to-month users**.
 
 Actions:
 
@@ -26,7 +26,7 @@ Actions:
 
 ## 3. Revisit Pricing Strategy for High-Value Customers
 
-Customers paying higher monthly charges (>70) have churn rates up to **35–40%**.
+Customers paying higher monthly charges (>70) have churn rates up to **35 - 40%**.
 
 Actions:
 
@@ -76,7 +76,7 @@ Actions:
 
 Customers who are:
 
-* New (≤12 months)
+* New (≤ 12 months)
 * On month-to-month contracts
 * Paying higher charges
 

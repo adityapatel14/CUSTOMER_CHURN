@@ -41,8 +41,8 @@ The objective of this project is to analyze customer churn behavior and identify
 
 * `data/` → Raw dataset
 * `sql/` → SQL scripts (data cleaning, EDA, churn analysis)
-* `04_insights.md` → Key findings
-* `05_business_recommendations.md` → Business strategies
+* `03_insights.md` → Key findings
+* `04_business_recommendations.md` → Business strategies
 
 ---
 

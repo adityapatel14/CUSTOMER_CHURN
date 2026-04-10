@@ -1,3 +1,4 @@
+USE telco_churn;
 WITH churn_perc as (
 SELECT
 	InternetService,

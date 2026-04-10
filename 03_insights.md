@@ -2,7 +2,7 @@
 
 ## 1. Customers Prefer Flexibility Over Commitment
 
-Customers on month-to-month contracts have the highest churn, with rates nearly **3–4 times higher** than those on yearly or two-year plans.
+Customers on month-to-month contracts have the highest churn, with rates nearly **3 - 4 times higher** than those on yearly or two-year plans.
 
 This shows that customers who are not locked into long-term commitments are much more likely to leave.
 
@@ -10,7 +10,7 @@ This shows that customers who are not locked into long-term commitments are much
 
 ## 2. The First Year is the Most Critical Phase
 
-Customers with tenure of **12 months or less** show the highest churn, with nearly **45–50% of new customers leaving early**.
+Customers with tenure of **12 months or less** show the highest churn, with nearly **45 - 50% of new customers leaving early**.
 
 This suggests that the initial experience plays a major role in whether a customer stays or leaves.
 
@@ -18,7 +18,7 @@ This suggests that the initial experience plays a major role in whether a custom
 
 ## 3. Higher Pricing Leads to Higher Drop-Off
 
-Customers paying **higher monthly charges (>70)** show churn rates close to **35–40%**, significantly higher than customers in lower pricing tiers.
+Customers paying **more than $70** show churn rates close to **35 - 40%**, significantly higher than customers in lower pricing tiers.
 
 This indicates that customers may not be perceiving enough value relative to the cost.
 
@@ -42,7 +42,7 @@ This highlights the importance of engagement and value-added services in retaini
 
 ## 6. Most Churn Happens Early in the Customer Lifecycle
 
-A large portion of total churn comes from customers in their early tenure stages, contributing to nearly **40–50% of overall churn**.
+A large portion of total churn comes from customers in their early tenure stages, contributing to nearly **40 - 50% of overall churn**.
 
 This reinforces the need to focus on early-stage customer retention strategies.
 
