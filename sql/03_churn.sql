@@ -92,3 +92,10 @@ SELECT
 FROM Customer_churn
 GROUP BY charge_bucket
 ORDER BY churn_rate DESC;
+
+SELECT 
+    PaymentMethod,
+    SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) AS churn_rate
+FROM Customer_churn
+GROUP BY PaymentMethod
+ORDER BY churn_rate DESC;
