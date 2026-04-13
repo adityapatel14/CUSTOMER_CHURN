@@ -53,3 +53,12 @@ This reinforces the need to focus on early-stage customer retention strategies.
 Customers using **electronic check** as a payment method show higher churn compared to those using automatic payment methods.
 
 This suggests that customers who are not on automated billing may be less engaged or less committed, making them more likely to leave.
+
+---
+
+### 8. Senior  churn rate is high
+
+Senior Citizens be it Male / Female have a higher 
+
+MALE : Those who have a phone service connected and a fiber option internet connection are contributing 49.1% to churn in that segment
+FEMALE : Those who dont have a phone service connected and but has a fiber internet connection are contributing 48.2% to churn in that segment

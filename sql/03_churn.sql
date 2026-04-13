@@ -100,3 +100,193 @@ SELECT
 FROM Customer_churn
 GROUP BY PaymentMethod
 ORDER BY churn_rate DESC;
+
+SELECT 
+	TechSupport,
+    SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*) AS churn_rate
+FROM Customer_churn
+GROUP BY TechSupport
+ORDER BY churn_rate ;
+
+SELECT
+	PaperlessBilling,
+	SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*) AS churn_rate
+FROM
+	customer_churn
+GROUP BY PaperlessBilling
+ORDER BY churn_rate DESC;
+
+SELECT
+	Contract,
+    PaymentMethod,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/count(*) as churn_rate
+FROM customer_churn
+GROUP BY Contract,PaymentMethod
+ORDER BY churn_rate DESC;
+
+WITH churn_calc AS (
+    SELECT 
+        'OnlineBackup' AS service,
+        OnlineBackup AS category,
+        COUNT(*) AS total_customers,
+        SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+        ROUND(
+            SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) * 1.0 / COUNT(*),
+            4
+        ) AS churn_rate
+    FROM customer_churn
+    GROUP BY OnlineBackup
+
+    UNION ALL
+
+    SELECT 
+        'DeviceProtection' AS service,
+        DeviceProtection AS category,
+        COUNT(*) AS total_customers,
+        SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+        ROUND(
+            SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) * 1.0 / COUNT(*),
+            4
+        ) AS churn_rate
+    FROM customer_churn
+    GROUP BY DeviceProtection
+
+    UNION ALL
+
+    SELECT 
+        'TechSupport' AS service,
+        TechSupport AS category,
+        COUNT(*) AS total_customers,
+        SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+        ROUND(
+            SUM(CASE WHEN Churn = 'Yes' THEN 1 ELSE 0 END) * 1.0 / COUNT(*),
+            4
+        ) AS churn_rate
+    FROM customer_churn
+    GROUP BY TechSupport
+)
+
+SELECT 
+    service,
+    category,
+    total_customers,
+    churned_customers,
+    churn_rate,
+    RANK() OVER (ORDER BY churn_rate DESC) AS churn_rank
+FROM churn_calc
+ORDER BY churn_rank;
+
+SELECT
+	(CASE
+    WHEN tenure < 12 THEN '0-1 Year'
+    WHEN tenure BETWEEN 12 AND 24 THEN '1-2 Years'
+    WHEN tenure BETWEEN 25 AND 48 THEN '2-4 Years'
+    WHEN tenure BETWEEN 49 AND 72 THEN '4-6 Years'
+    ELSE '6+ Years'
+	END) as tenure_gap,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*) AS churn_rate
+FROM customer_churn
+GROUP BY tenure_gap
+ORDER BY churn_rate ;
+
+WITH snr as (
+select 
+	gender,
+	SeniorCitizen,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/count(*) AS churn_rate
+FROM
+	customer_churn
+GROUP BY gender,SeniorCitizen
+ORDER BY churn_rate desc
+)
+SELECT gender,SeniorCitizen,churn_rate,RANK()OVER(ORDER BY churn_rate DESC) as churn_rank
+FROM snr;
+
+WITH snr as (
+select 
+	gender,
+	SeniorCitizen,
+    HasPhoneService,
+    InternetService,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/count(*) AS churn_rate
+FROM
+	customer_churn
+GROUP BY gender,SeniorCitizen,HasPhoneService,InternetService
+ORDER BY churn_rate desc
+)
+SELECT gender,SeniorCitizen,HasPhoneService,InternetService,churn_rate,RANK()OVER(ORDER BY churn_rate DESC) as churn_rank
+FROM snr;
+
+WITH snr as (
+select 
+	gender,
+    HasPhoneService,
+    InternetService,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/count(*) AS churn_rate,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) as churn_count,
+    count(*) as total_count
+FROM
+	customer_churn
+WHERE SeniorCitizen = 'Yes'
+GROUP BY gender,SeniorCitizen,HasPhoneService,InternetService
+ORDER BY churn_rate desc
+)
+SELECT gender,HasPhoneService,InternetService,total_count,churn_count,churn_rate,RANK()OVER(ORDER BY churn_rate DESC) as churn_rank
+FROM snr;
+
+WITH total_sc AS (
+    SELECT COUNT(*) AS total_senior
+    FROM customer_churn
+    WHERE SeniorCitizen = 'Yes'
+),
+
+seg AS (
+    SELECT 
+        gender,
+        HasPhoneService,
+        InternetService,
+        SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) AS churned
+    FROM customer_churn
+    WHERE SeniorCitizen = 'Yes'
+    GROUP BY gender, HasPhoneService, InternetService
+)
+
+SELECT 
+    s.gender,
+    s.HasPhoneService,
+    s.InternetService,
+    s.churned * 100.0 / t.total_senior AS churn_pct_of_total_sc
+FROM seg s
+CROSS JOIN total_sc t
+ORDER BY churn_pct_of_total_sc DESC;
+
+
+SELECT 
+	InternetService,
+	OnlineSecurity,
+    TechSupport,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*) AS churn_rate
+FROM customer_churn
+WHERE InternetService != 'No'
+GROUP BY InternetService,
+	OnlineSecurity,
+    TechSupport
+ORDER BY churn_rate DESC;
+
+WITH total_cust as(
+SELECT count(*) as total_customer
+FROM customer_churn
+WHERE churn = 'Yes'
+),
+churned_cust as (
+SELECT 
+	InternetService,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END) AS churned_customers,
+    SUM(CASE WHEN churn = 'Yes' THEN 1 ELSE 0 END)*100.0/count(*) as churn_rate
+FROM customer_churn
+GROUP BY InternetService
+)
+SELECT c.InternetService,c.churned_customers,c.churn_rate,(c.churned_customers*100.0)/t.total_customer as contribution_to_total_churn
+FROM churned_cust c
+CROSS JOIN total_cust t
+ORDER BY contribution_to_total_churn DESC;
