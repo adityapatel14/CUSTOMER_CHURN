@@ -1,51 +1,25 @@
-# Telco Customer Churn Analysis
+📉 Telco Customer Churn Prediction
+A machine learning project that predicts whether a telecom customer will churn, using the IBM Telco Customer Churn dataset. Two classification models were built and evaluated — Logistic Regression and Random Forest — with Logistic Regression achieving the best performance at ~86% accuracy.
 
-## Objective
+📌 Problem Statement
+Customer churn is one of the most expensive problems in the telecom industry. Retaining an existing customer costs significantly less than acquiring a new one. This project aims to identify customers likely to churn based on their demographics, account information, and service usage — enabling proactive retention strategies.
 
-The objective of this project is to analyze customer churn behavior and identify key factors influencing customer retention in a telecom company.
+📂 Dataset
+DetailValueSourceIBM Sample Dataset — Telco Customer ChurnRows7,043 customersColumns22 featuresTarget VariableChurn (Yes / No)
+Class Distribution:
 
----
+Not Churned: 5,174 (73.5%)
+Churned: 1,869 (26.5%)
 
-## Tools Used
+Key Features
+FeatureDescriptiontenureNumber of months the customer has stayed (0–72)ContractContract type: Month-to-month, One year, Two yearMonthlyChargesMonthly billing amount ($18.25–$118.75)TotalChargesTotal amount charged to dateInternetServiceDSL, Fiber optic, or No internetPaymentMethodElectronic check, Mailed check, Bank transfer, Credit cardOnlineSecurity, TechSupportValue-added services usageSeniorCitizen, Partner, DependentsDemographic attributes
 
-* SQL (MySQL)
-* Python (Pandas, Matplotlib, Seaborn) *(for further analysis and visualization)*
+🔧 Tech Stack
 
----
+Language: Python
+Libraries: pandas, numpy, scikit-learn, matplotlib, seaborn
+Models: Logistic Regression, Random Forest Classifier
 
-## Key Insights
 
-* Customers on month-to-month contracts have **3–4x higher churn** than long-term customers
-* Nearly **45–50% of new customers churn within the first year**
-* High monthly charges (>70) are associated with **35–40% churn rates**
-* Fiber optic users show higher churn despite being premium customers
-* Lack of support services significantly increases churn risk
-* A large portion of churn occurs in early customer stages
-* Customers using electronic check payment methods show higher churn
-
----
-
-## Business Recommendations
-
-* Improve onboarding and early customer engagement
-* Promote long-term contracts through incentives
-* Re-evaluate pricing for high-value customers
-* Enhance service quality for fiber optic users
-* Increase adoption of support services
-* Encourage automated payment methods
-* Target high-risk customers with retention strategies
-
----
-
-## Project Structure
-
-* `data/` → Raw dataset
-* `sql/` → SQL scripts (data cleaning, EDA, churn analysis)
-* `03_insights.md` → Key findings
-* `04_business_recommendations.md` → Business strategies
-
----
-
-## Conclusion
-
-This analysis highlights that churn is primarily driven by contract type, tenure, pricing, and customer engagement. By focusing on early retention, pricing optimization, and service improvement, the company can significantly reduce churn and improve customer lifetime value.
+🔄 Project Workflow
+Raw Data → EDA → Feature Engineering → Preprocessing → Model Training → Evaluation → Insights
