@@ -15,7 +15,7 @@ Customer churn is one of the most expensive problems in the telecom industry. Re
 | Detail | Value |
 |---|---|
 | Source | IBM Sample Dataset — Telco Customer Churn |
-| Rows | 7,043 customers |
+| Rows | 7,032 customers |
 | Columns | 22 features |
 | Target Variable | `Churn` (Yes / No) |
 

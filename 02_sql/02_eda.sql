@@ -68,3 +68,28 @@ SELECT
 FROM customer_churn
 WHERE InternetService != 'No'
 GROUP BY OnlineSecurity;
+
+SELECT 
+    'Online Security' AS add_on_service,
+    ROUND(AVG(CASE WHEN Churn = "Yes" AND OnlineSecurity = 'No' AND InternetService != 'No' THEN 1 ELSE 0 END) * 100, 2) AS no_addon_churn_rate,
+    ROUND(AVG(CASE WHEN Churn = "Yes" AND OnlineSecurity = 'Yes' THEN 1 ELSE 0 END) * 100, 2) AS with_addon_churn_rate
+FROM customer_churn;
+
+SELECT 
+	Contract,
+	SUM(CASE WHEN Churn = "Yes" then 1 else 0 end)*100.0/count(*) as churn_Rate,
+    count(*)
+FROM customer_churn
+GROUP BY Contract;
+
+SELECT
+	count(*),
+	SUM(CASE WHEN Churn = "Yes" and Contract = "Month-to-month" then 1 else 0 end) as churn_count,
+	SUM(CASE WHEN Churn = "Yes" and Contract = "Month-to-month" then 1 else 0 end)*100.0/count(*) as churn_rate
+from customer_churn
+WHERE Churn = "Yes";
+
+USE product_analytics_db;
+SELECT sum(amount)
+from merged_saas
+where payment_status = "success"
