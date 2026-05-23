@@ -92,4 +92,7 @@ WHERE Churn = "Yes";
 USE product_analytics_db;
 SELECT sum(amount)
 from merged_saas
-where payment_status = "success"
+where payment_status = "success";
+
+SELECT *
+from customer_churn;
