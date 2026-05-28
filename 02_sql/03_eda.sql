@@ -28,4 +28,7 @@ From customer_churn;
 SELECT InternetService, SUM(CASE WHEN Churn = "Yes" then 1 else 0 end)*100.0/count(*) as churn_Rate
 from customer_churn
 group by InternetService
-order by churn_rate desc
+order by churn_rate desc;
+
+SELECT *
+From customer_churn;
