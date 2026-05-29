@@ -32,3 +32,8 @@ order by churn_rate desc;
 
 SELECT *
 From customer_churn;
+
+SELECT customerID,TotalCharges
+from customer_churn
+order by TotalCharges desc
+limit 5;
